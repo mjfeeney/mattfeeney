@@ -1,0 +1,289 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+
+	<link rel="home" href="{{ siteUrl }}" />
+	<link rel="stylesheet" href="{{ siteUrl }}/public/css/normalize.css">
+	<link rel="stylesheet" href="{{ siteUrl }}/public/css/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ siteUrl }}/public/css/style.css">
+
+	<script type="text/javascript" src="//use.typekit.net/xpx1jbf.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="public/js/landingPage_application.js"></script>
+    <script src="{{ siteUrl }}/public/js/bootstrap.min.js"></script>
+    <script src="{{ siteUrl }}/public/js/application.js"></script>
+
+</head>
+
+
+
+
+
+<body>
+
+	<div id="container">
+
+		<header id="header">
+			<div class="row">
+
+				<div class="container">
+
+					<div class="col-sm-4 col-xs-7">
+	
+						<h1 class="header_nav_title"><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+
+					</div>
+					<!-- end column -->
+
+					<div class="col-sm-4 col-xs-5">
+
+						<nav>
+							<ul class="list-unstyled header_nav">
+
+								<li><a href="{{ siteUrl() }}#work">Work</a></li>
+
+								<li><a href="{{ url('blog') }}" {% if craft.request.firstSegment == 'blog' %}class="active"{% endif %}>Blog</a></li>
+								
+							</ul>
+						</nav>
+
+					</div>
+					<!-- end column -->
+
+					<div class="col-sm-4">
+								
+						<ul class="list-unstyled page_social_links hidden-xs">
+
+							<li>
+								<a href="http://twitter.com/mattfeeney"><img src="{{ siteUrl }}/public/img/twitter.png" alt="Twitter"></a>
+							</li>
+
+							<li>
+								<a data-toggle="modal" href="#textModal"><img src="{{ siteUrl }}/public/img/email.png" alt="email"></a
+							</li>
+
+							<li>
+								<a href="http://github.com"><img src="{{ siteUrl }}/public/img/github.png" alt="GitHub"></a>
+							</li>
+
+							<li>
+								<a href="http://instagram.com/mfeeney3"><img src="{{ siteUrl }}/public/img/instagram.png" alt="Instagram"></a>
+							</li>
+							
+						</ul>
+
+					</div>
+					<!-- end column -->
+
+				</div>
+				<!-- end container -->
+
+			</div>
+			<!-- End row -->
+
+		
+		</header>
+
+		
+		<!-- Contact modal -->
+		<div class="modal fade" id="textModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title contact_header">Contact Me</h4>
+					</div>
+
+					<div class="modal-body">
+						<form id="form2" name="form2" class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate action="https://mattfeeney.wufoo.com/forms/mf8inds1em4dva/#public">
+		  
+							<ul class="list-unstyled">
+
+								<li id="foli3" class="notranslate contact-name">
+									<label class="desc" id="title3" for="Field3">NAME</label>
+
+									<div class="input-box">
+										<input id="Field3" name="Field3" type="text" class="contact-name" value="" maxlength="100" tabindex="1" onkeyup="validateRange(3, 'character');" required />
+									</div>
+								</li>
+
+								<li id="foli4" class="notranslate contact-email">
+									<label class="desc" id="title4" for="Field4">EMAIL</label>
+
+									<div class="input-box">
+										<input id="Field4" name="Field4" type="text" class="contact-email" value="" maxlength="100" tabindex="2" onkeyup="validateRange(4, 'character');" required />
+									</div>
+								</li>
+
+								<li id="foli5" class="notranslate contact-message">
+									<label class="desc" id="title5" for="Field5">MESSAGE</label>
+
+									<div class="input-box">
+										<textarea id="Field5" name="Field5" class="contact-message" spellcheck="true" rows="10" cols="15" tabindex="3" onkeyup=""require>
+										</textarea>
+									</div>
+								</li> 
+
+								<li class="button-submit">
+
+									<div>
+										<input id="saveForm" name="saveForm" class="contact-submit" type="submit" value="Submit"/>
+									</div>
+								</li>
+
+								<li class="hide">
+									<label for="comment">Do Not Fill This Out</label>
+									<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+									<input type="hidden" id="idstamp" name="idstamp" value="vtuPgbog6u107/d/R+n1yz0Sokz74Ms7J+eoyz2zNH0=" />
+								</li>
+							</ul>
+						</form> 
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- End Contact modal -->
+
+
+
+		<div class="page-wrap">
+
+			<main id="content" role="main">
+				
+
+						{% block content %}
+
+							<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+							<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+							
+						{% endblock %}
+
+					
+			</main>
+
+		</div>
+
+
+
+		
+
+		<footer id="footer">
+			<div class="row">
+
+				<div class="container">
+
+					<div class="col-sm-4">
+
+						<ul class="list-unstyled footer_nav">
+							<li><a href="{{ siteUrl }}">Home</a></li>
+							<li><a href="{{ siteUrl }}#work">Work</a></li>
+							<li><a href="{{ url('blog') }}">Blog</a></li>
+						</ul>
+
+					</div>
+					<!-- End column -->
+
+					<div class="col-sm-4 hidden-sm hidden-md hidden-lg">
+						
+						<ul class="list-unstyled page_social_links">
+							<li>
+								<a href="http://twitter.com/mattfeeney"><img src="{{ siteUrl }}/public/img/twitter.png" alt="Twitter"></a>
+							</li>
+
+							<li>
+								<a data-toggle="modal" href="#textModal"><img src="{{ siteUrl }}/public/img/email.png" alt="email"></a>
+							</li>
+
+							<li>
+								<a href="http://github.com"><img src="{{ siteUrl }}/public/img/github.png" alt="GitHub"></a>
+							</li>
+
+							<li>
+								<a href="http://instagram.com/mfeeney3"><img src="{{ siteUrl }}/public/img/instagram.png" alt="Instagram"></a>
+							</li>
+						</ul>
+
+					</div>
+					<!-- End column -->
+			
+
+
+					<div class="col-sm-4">
+						<div class="copyright">
+							@ {{ siteName }} {{ now.year }}
+						</div>
+					</div>
+					<!-- End column -->
+					
+
+					<div class="col-sm-4">
+						<div class="designer">
+							Site design by <a href="http://brianfeeney.us">Brian Feeney</a>
+						</div>
+					</div>
+					<!-- End column -->
+				
+				
+				</div>
+				<!-- End container -->
+
+			</div>
+			<!-- End row -->
+
+		</footer>
+
+		
+
+
+
+	</div>
+	<!-- End container -->
+
+
+	
+   
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

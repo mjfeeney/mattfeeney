@@ -1,0 +1,356 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://buildwithcraft.com/docs/routing
+ #}
+
+{% extends "_layout" %}
+
+
+{% block content %}
+
+	<div class="header_image">
+		<div class="row">
+	
+			<div class="bg-image-main">
+				<h1>{{ siteName }}</h1>
+			</div>
+			
+		</div>
+		<!--End 'row'-->
+	</div>
+	<!-- end header_image -->
+	
+
+	<div class="landingPage_header">
+
+				<div class="social_icons icon_links">
+					<div class="row">
+
+						<div class="container">
+						
+							<div class="col-sm-6 col-sm-offset-3">
+								
+								<ul class="list-unstyled">
+									<li>
+										<a href="http://twitter.com/mattfeeney"><img src="public/img/twitter.png" alt="Twitter"></a>
+									</li>
+									<li>
+										<a href="#contact"><img src="public/img/email.png" alt="email"></a>
+									</li>
+									<li>
+										<a href="http://github.com/mjfeeney"><img src="public/img/github.png" alt="GitHub"></a>
+									</li>
+									<li>
+										<a href="http://instagram.com/mfeeney3"><img src="public/img/instagram.png" alt="Instagram"></a>
+									</li>
+									
+								</ul>
+
+							</div>
+							<!--End 'col-sm'-->
+						</div>
+						<!--End 'container'-->
+					</div>
+					<!--End 'row'-->
+				</div>
+				<!-- end social_icons -->
+
+
+				<div class="main_bottom_bg">
+					<div class="row">
+
+						<div class="container">
+
+							<div class="col-sm-6">
+
+								{{ entry.body }}
+
+
+							</div>
+							<!-- end column -->
+
+							<div class="col-sm-6">
+
+								<nav>
+									<ul class="list-unstyled landingPage_nav">
+
+										<li><a href="#work">Work</a></li>
+
+										<li><a href="{{ url('blog') }}" {% if craft.request.firstSegment == 'blog' %}class="active"{% endif %}>Blog</a></li>
+										
+									</ul>
+								</nav>
+
+							</div>
+							<!-- end column -->
+						</div>
+						<!-- end container -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end main_bottom_bg -->
+
+		
+	</div>
+	<!-- end landingPage_header -->
+
+
+	
+
+<!-- work entries -->
+	<section class="work" id="work">
+
+		{% for entry in craft.entries.section('blog').type('Projects').limit(5).find() %}
+
+			<div class="project_posts">
+				<div class="row">
+
+					<div class="container">
+					
+						<ul>
+							<div class="col-xs-6">
+								<li class="project_title">{{ entry.title }}</li>
+							</div>
+							<div class="col-xs-6">
+								<li class="project_link"><a href="{{ entry.projectUrl }}">{{ entry.projectName }}</a></li>
+							</div>
+						</ul>
+
+						<div class="col-sm-8 col-sm-offset-2">
+
+							<div class="work_panel">
+
+								{% if entry.singlePhoto|length %}
+
+									<div class="single_photo">
+
+										{% set image = entry.singlePhoto.first() %}
+
+											<img src="{{ image.getUrl() }}" alt="">
+
+									</div>
+
+								{% endif %}
+								
+								{% if entry.projectScreenshots|length %}
+
+									<div class="screenshots">
+
+										<div id="{{ entry.carousel }}" class="carousel">
+
+											<div class="carousel-inner">
+				
+												<div class="item active">
+													
+												{% set image = entry.projectScreenshots.first() %}
+													
+													<div class="peopleCarouselImg">
+														<img class="peopleCarouselImg" src="{{ image.getUrl() }}">
+													</div>
+
+												</div>
+
+												{% for image in entry.projectScreenshots.offset(1) %}
+
+												<div class="item">
+													<div class="peopleCarouselImg">
+														<img class="peopleCarouselImg" src="{{ image.getUrl() }}">
+													</div>
+												</div>
+
+												{% endfor %}
+
+											
+
+											</div>
+											
+											<!-- Carousel Controls -->
+											<a href="#{{ entry.carousel }}" class="left carousel-control" data-slide="prev">
+												<span class="icon-prev"></span>
+											</a>
+
+											<a href="#{{ entry.carousel }}" class="right carousel-control" data-slide="next">
+												<span class="icon-next"></span>
+											</a>
+											<!-- end Carousel Controls -->
+
+										</div>
+										<!-- end carousel #myCarousel -->
+
+									</div>
+									<!-- End "screenshots" -->
+
+								{% endif %}
+
+
+							
+							
+								<ul class="list-unstyled highlights">
+									<li>{{ entry.component1 }}</li>
+									<li>{{ entry.component2 }}</li>
+									<li>{{ entry.component3 }}</li>
+
+								</ul>
+
+								
+
+								<div class="description">{{ entry.projectSummary }}</div>
+
+								<div class="up"><img src="{{ siteUrl }}public/img/uparrow.png" alt="up"></div>
+
+							</div>
+							<!-- End "work-panel" -->
+
+						</div>
+						<!-- End "col-sm-8" -->
+
+					</div>
+					<!-- end container -->
+
+				</div>
+				<!-- end row -->
+
+			</div>
+			<!-- end project_posts -->
+
+
+		{% endfor %}
+
+
+	</section>
+<!-- end work entires -->
+
+
+
+<!-- most recent blog entries -->
+	<section class="blog" id="blog">
+	
+		
+
+	
+				{% for entry in craft.entries.section('blog').type('Blog').limit(2).find() %}
+					<article>
+						<div class="row">
+
+							<div class="container">
+
+								<div class="col-sm-5">
+
+									<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+									<h4><a href="{{ entry.url }}">{{ entry.postDate.format('F d, Y') }}</a></h4>
+									
+								</div>
+
+								<div class="col-sm-7">
+
+									{{ entry.body.getPage(1) }}
+									<p class="excerpt"><a href="{{ entry.url }}">Continue reading...</a></p>
+						
+								</div>
+
+							</div>
+							<!-- end container -->
+
+						</div>
+						<!-- end row -->
+					</article>
+
+				{% endfor %}
+				
+
+			
+
+	</section>
+<!-- end most recent blog entries -->
+
+
+
+<!-- contact form -->
+
+	<div class="row">	
+		<div class="contact">
+			<div class="container">
+
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="contact_form bottom-space">
+
+						<h2 id="contact" class="contact_header">Contact Me</h2>
+						
+
+						<form id="form2" name="form2" class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate action="https://mattfeeney.wufoo.com/forms/mf8inds1em4dva/#public">
+		  
+							<ul class="list-unstyled">
+
+								<li id="foli3" class="notranslate contact-name">
+									<label class="desc" id="title3" for="Field3">NAME</label>
+
+									<div class="input-box">
+										<input id="Field3" name="Field3" type="text" class="contact-name" value="" maxlength="100" tabindex="1" onkeyup="validateRange(3, 'character');" required />
+									</div>
+								</li>
+
+								<li id="foli4" class="notranslate contact-email">
+									<label class="desc" id="title4" for="Field4">EMAIL</label>
+
+									<div class="input-box">
+										<input id="Field4" name="Field4" type="text" class="contact-email" value="" maxlength="100" tabindex="2" onkeyup="validateRange(4, 'character');" required />
+									</div>
+								</li>
+
+								<li id="foli5" class="notranslate contact-message">
+									<label class="desc" id="title5" for="Field5">MESSAGE</label>
+
+									<div class="input-box">
+										<textarea id="Field5" name="Field5" class="contact-message" spellcheck="true" rows="10" cols="15" tabindex="3" onkeyup=""require>
+										</textarea>
+									</div>
+								</li> 
+
+								<li class="button-submit">
+
+									<div>
+										<input id="saveForm" name="saveForm" class="contact-submit" type="submit" value="Submit"/>
+									</div>
+								</li>
+
+								<li class="hide">
+									<label for="comment">Do Not Fill This Out</label>
+									<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+									<input type="hidden" id="idstamp" name="idstamp" value="vtuPgbog6u107/d/R+n1yz0Sokz74Ms7J+eoyz2zNH0=" />
+								</li>
+							</ul>
+						</form> 
+					</div>
+					<!-- end contact_form -->
+				</div>
+				<!-- end column -->
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- end contact -->
+	</div>
+	<!-- end row -->
+
+
+<!-- end contact form -->
+
+
+
+{% endblock %}
+
+
+

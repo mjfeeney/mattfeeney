@@ -217,15 +217,6 @@ a:hover {
 }
 
 
-
-
-.screenshots .carousel-inner {
-	
-
-}
-
-
-
 .screenshots, .single_photo {
 	margin: 20px;
 }
@@ -296,14 +287,15 @@ a:hover {
 
 
 
-.landingPage_header {
-	
+.header_image {
+	background: #555555 url('../img/matt-galway-bw.png') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
 }
 
-.header_image {
-	background: #555555 url('../img/matt-galway-bw.png') no-repeat center;
-	background-size: cover;
-	
+.landingPage_header {
+	z-index: 100;
 }
 
 .bg-image-main {
@@ -635,6 +627,10 @@ html, body {
 			font-size: 11px;
 		}
 
+		.header_image {
+
+		}
+
 		.header_nav li {
 			font-size: .85em;
 		
@@ -705,6 +701,10 @@ html, body {
 
 	body {
 		font-size: ;
+	}
+
+	.header_image {
+		
 	}
 
 	header h1 { 

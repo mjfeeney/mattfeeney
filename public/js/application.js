@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 	//Dynamically assign height -----------------------------------------------------
 
 	function sizeContent() {
-    	var newHeight = $(window).height() - "160" + "px";
+    	var newHeight = $(window).height() - "145" + "px";
     	$(".bg-image-main").css("height", newHeight);
 
 		};

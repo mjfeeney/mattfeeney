@@ -287,10 +287,20 @@ a:hover {
 
 
 
-.header_image {
+.header_image, .contact {
 	background: #555555 url('../img/matt-galway-bw.png') no-repeat;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	-moz-background-size: cover;
 	background-size: cover;
+
+	-webkit-background-attachment: fixed;
+	-o-background-attachment: fixed;
+	-ms-background-attachment: fixed;
+	-moz-background-attachment: fixed;
 	background-attachment: fixed;
+
 	background-position: center;
 }
 
@@ -431,7 +441,7 @@ footer {
 /*** FORMS 
 ******************************************************************/
 
-.contact {
+ {
 	background: #555555 url('../img/matt-galway-bw.png') no-repeat;
 	background-size: cover;
 	background-attachment: fixed;

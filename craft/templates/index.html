@@ -22,7 +22,11 @@
 
 {% block content %}
 
-	<div class="header_image">
+	{% set image = entry.heroImage.first() %}
+	<div class="header_image" style="background: #555555 url('{{ image.getUrl }}') no-repeat; 
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;">
 		<div class="row">
 	
 			<div class="bg-image-main">

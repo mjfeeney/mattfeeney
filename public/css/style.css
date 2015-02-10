@@ -285,23 +285,8 @@ a:hover {
 /*** LANDING PAGE HEADER
 ****************************************/
 
-
-
-.header_image, .contact {
-	background: #555555 url('../img/matt-galway-bw.png') no-repeat;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
-	-moz-background-size: cover;
-	background-size: cover;
-
-	-webkit-background-attachment: fixed;
-	-o-background-attachment: fixed;
-	-ms-background-attachment: fixed;
-	-moz-background-attachment: fixed;
-	background-attachment: fixed;
-
-	background-position: center;
+.header_image {
+	
 }
 
 .landingPage_header {
@@ -441,15 +426,9 @@ footer {
 /*** FORMS 
 ******************************************************************/
 
- {
-	background: #555555 url('../img/matt-galway-bw.png') no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	background-position: center;
-}
 
 .contact-bg-cover {
-	background: rgba(68, 68, 68, .5);
+	background: rgba(68, 68, 68);
 	padding-bottom: 40px;
 }
 
@@ -706,6 +685,22 @@ html, body {
 		}
 
 	
+}
+
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	
+	.header_image {
+		background-attachment: scroll;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	
+	.header_image {
+		background-attachment: scroll;
+	}
 }
 
 
